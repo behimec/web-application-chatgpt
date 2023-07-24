@@ -81,7 +81,7 @@ app.post('/get-prompt-result', async (req, res) => {
                     prompt,
                     model
                 })
-            });
+            }).text();
             console.log("end of response")
             console.log(result)
             console.log(result.data)
