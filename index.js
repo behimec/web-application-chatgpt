@@ -73,6 +73,7 @@ app.post('/get-prompt-result', async (req, res) => {
 
     try {
         if (model == 'llama2-13b-nof'){
+            console.log("entering if statement")
             const response = await fetch('http://104.171.202.170:5000' + '/query', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -81,6 +82,7 @@ app.post('/get-prompt-result', async (req, res) => {
                     model
                 })
             });
+            print("end of response")
             return response['answer']
         }
         // Use the OpenAI SDK to create a completion
