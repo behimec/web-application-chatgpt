@@ -83,7 +83,7 @@ app.post('/get-prompt-result', async (req, res) => {
                 })
             });
             console.log("end of response")
-            console.log(result.result.answer)
+            console.log(result[0].result.answer)
             console.log(result.data)
             console.log(result.data.choices)
             console.log(result.data.choices[0]?.message?.content)
