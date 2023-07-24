@@ -74,7 +74,7 @@ app.post('/get-prompt-result', async (req, res) => {
     try {
         if (model == 'llama2-13b-nof'){
             console.log("entering if statement")
-            const response = await fetch('http://104.171.202.170:5000' + '/query', {
+            const result = await fetch('http://104.171.202.170:5000' + '/query', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -83,10 +83,11 @@ app.post('/get-prompt-result', async (req, res) => {
                 })
             });
             console.log("end of response")
-            console.log(response)
-            console.log(response.data)
-            console.log(response.data.choices)
-            return res.send(response['answer'])
+            console.log(result)
+            console.log(result.data)
+            console.log(result.data.choices)
+            console.log(result.data.choices[0]?.message?.content)
+            return res.send(result['answer'])
         }
         // Use the OpenAI SDK to create a completion
         // with the given prompt, model and maximum tokens
