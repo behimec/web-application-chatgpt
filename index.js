@@ -82,8 +82,8 @@ app.post('/get-prompt-result', async (req, res) => {
                     model
                 })
             });
-            print("end of response")
-            return response['answer']
+            console.log("end of response")
+            return res.send(response['answer'])
         }
         // Use the OpenAI SDK to create a completion
         // with the given prompt, model and maximum tokens
