@@ -82,8 +82,8 @@ app.post('/get-prompt-result', async (req, res) => {
                     model
                 })
             });
-            const textt =await result.text()
-            console.log(textt.result.answer)
+            const textt = await result.text()
+            console.log(JSON.stringify(textt).result.answer)
             return res.send(result['answer'])
         }
         // Use the OpenAI SDK to create a completion
