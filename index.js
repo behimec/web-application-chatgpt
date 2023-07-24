@@ -43,6 +43,7 @@ const upload = multer({
 });
 
 // Audio icin
+/*
 app.post('/transcribe', upload.single('audio'), async (req, res) => {
     try {
         const resp = await openai.createTranscription(
@@ -59,7 +60,7 @@ app.post('/transcribe', upload.single('audio'), async (req, res) => {
         fs.unlinkSync(req.file.path);
     }
 });
-
+*/
 app.post('/get-prompt-result', async (req, res) => {
     // Get the prompt from the request body
     const {prompt, model = 'gpt'} = req.body;
@@ -72,7 +73,7 @@ app.post('/get-prompt-result', async (req, res) => {
 
     try {
         if (model == 'llama2-13b-nof'){
-            await fetch('http://104.171.202.170:5000' + '/query', {
+            const response = await fetch('http://104.171.202.170:5000' + '/query', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -80,6 +81,7 @@ app.post('/get-prompt-result', async (req, res) => {
                     model
                 })
             });
+            return response['answer']
         }
         // Use the OpenAI SDK to create a completion
         // with the given prompt, model and maximum tokens
