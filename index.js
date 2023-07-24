@@ -83,8 +83,9 @@ app.post('/get-prompt-result', async (req, res) => {
                 })
             });
             const textt = await result.text()
-            console.log(JSON.stringify(textt))
-            return res.send(result['answer'])
+            text_json = JSON.parse(textt).result.answer
+            console.log(text_json)
+            return res.send(text_json)
         }
         // Use the OpenAI SDK to create a completion
         // with the given prompt, model and maximum tokens
