@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/', express.static(__dirname + '/client')); // Serves resources from client folder
 
-// Set up Multer to handle file uploads
+// File upload Set up Multer to handle file uploads
 const upload = multer({
     storage: multer.diskStorage({
         destination: function (req, file, cb) {
@@ -40,6 +40,7 @@ const upload = multer({
     }
 });
 
+// Audio icin
 app.post('/transcribe', upload.single('audio'), async (req, res) => {
     try {
         const resp = await openai.createTranscription(
@@ -68,6 +69,16 @@ app.post('/get-prompt-result', async (req, res) => {
     }
 
     try {
+        if (model == 'llama2-13b-nof'){
+            await fetch('http://104.171.202.170:5000' + '/query', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    prompt,
+                    model
+                })
+            });
+        }
         // Use the OpenAI SDK to create a completion
         // with the given prompt, model and maximum tokens
         if (model === 'image') {
