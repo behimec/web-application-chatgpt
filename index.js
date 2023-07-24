@@ -6,12 +6,14 @@ const fs = require('fs');
 const path = require('path');
 const multer  = require('multer');
 const { v4: uuidv4 } = require('uuid');
+/*
 require("dotenv").config();
 const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
-
+*/
+const openai = 'dummy'
 app.use(cors());
 app.use(express.json());
 app.use('/', express.static(__dirname + '/client')); // Serves resources from client folder
