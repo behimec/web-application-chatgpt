@@ -81,7 +81,8 @@ app.post('/get-prompt-result', async (req, res) => {
                     prompt,
                     model
                 })
-            }).text();
+            });
+            const textt =await response.text()
             console.log("end of response")
             console.log(result)
             console.log(result.data)
